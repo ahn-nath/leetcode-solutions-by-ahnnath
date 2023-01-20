@@ -16,6 +16,7 @@ def fib(n: int) -> int:
 
     return res
 
+
 if __name__ == '__main__':
     # examples
     print(fib(8))
