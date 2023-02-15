@@ -9,26 +9,50 @@ def decodeString(s: str) -> str:
         :return: string
     """
     stack = []
-    digits = []
+    end = []
+    digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     # iterate over string and append every character, except for closing brackets ("]")
     for letter in s:
-        if not "]":
+        if letter != "]":
             stack.append(letter)
         # if a closing bracket, we will resolve the string inside and multiply the resulting string by the digit
         else:
-            print(letter)
             l_internal = stack.pop()
-            resulting_string = []
+            resulting_string = ""
             # pop everything until you reach a digit
             while l_internal not in digits:
                 # if not an opening bracket, keep iterating and appending
                 if l_internal != "[":
-                    resulting_string.append(l_internal)
+                    resulting_string = l_internal + resulting_string
                 # pop next letter
                 l_internal = stack.pop()
-            # the resulting string to append next to be multiplied by the digit followed by the opening bracket
-            resulting_string = resulting_string * l_internal
+            # the resulting string to append next to be multiplied by the digit(s) followed by the opening bracket
+            number = ''
+            # while loop to track all digits in one string
+            '''
+            while l_internal in digits:
+                number = l_internal + number
+                if stack:
+                    l_internal = stack.pop()
+                else:
+                    break
+            '''
+            item = l_internal
+            while item in digits:
+                number = item + number
+                if stack and stack[-1] in digits:
+                    item = stack.pop()
+                else:
+                    break
+
+            # multiply the value by the resulting string
+            resulting_string = resulting_string * int(number)
             stack.append(resulting_string)
+
+    # output
+    out = ''.join(map(str, stack))
+    print("out for {} is: {}".format(s, out))
+    return out
 
 
 if __name__ == '__main__':
@@ -43,5 +67,8 @@ if __name__ == '__main__':
     Output: "abcabccdcdcdef"
     
     """
-    s = "abc" * 3
-    print(s)
+
+    decodeString(s="100[leetcode]")
+    decodeString(s="2[abc]3[cd]ef")  # "abcabccdcdcdef"
+    decodeString(s="3[a2[c]]")  # "accaccacc"
+    decodeString(s="3[a]2[bc]")  # "aaabcbc"
