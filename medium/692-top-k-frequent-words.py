@@ -2,41 +2,43 @@ from typing import List
 
 
 def topKFrequent(words: List[str], k: int) -> List[str]:
-    # TODO: study heaps before submitting the solution
-
-    # sort the words in lexicographical order
-    words.sort()
-
-    # for loop to keep unique keys
-    keys = []
-    count = []
+    # track overall counts for each string
+    word_count = {}
     for w in words:
-        # for each new key, record and set space for its count
-        if w not in keys:
-            keys.append(w)
-            count.append(1)
+        if w not in word_count:
+            word_count[w] = 1
         else:
-            # get the index and update the count
-            i = keys.index(w)
-            count[i] = count[i] + 1
+            word_count[w] += 1
 
-    # for loop to get the index of the max value until k is reached
-    indexes_max = []
-    for _ in range(k):
-        max_index = count.index(max(count))
-        # update list to get next max index
-        count[max_index] = -1
-        # append to list
-        indexes_max.append(max_index)
+    # track and record overall groups for each count
+    count_groups = {}
+    for word, count in word_count.items():
+        if count not in count_groups:
+            count_groups[count] = [word]
+        else:
+            arr = count_groups[count]
+            arr.append(word)
+            count_groups[count] = arr
 
-    indexes_max.sort()
-
-    # sort the list of indexes and iterate to get them in a different list
+    # get frequent words
+    number_added = 0
     frequent_words = []
-    for index in indexes_max:
-        frequent_words.append(keys[index])
+    # targets = sorted(list(count_groups.keys()))
+    while number_added < k:
+        max_count = max(count_groups)
+        target = sorted(count_groups[max_count])
 
-    print("frequent words:", frequent_words)
+        for word in target:
+            frequent_words.append(word)
+            number_added += 1
+            if number_added >= k:
+                break
+
+        # remove used key from dictionary
+        del count_groups[max_count]
+
+    # out
+    print(frequent_words)
     return frequent_words
 
 
@@ -44,6 +46,7 @@ if __name__ == '__main__':
     words = ["i", "love", "leetcode", "i", "love", "coding"]
     k = 2
 
+    topKFrequent(words=["i", "love", "leetcode", "i", "love", "coding"], k=1)  # ['i']
     topKFrequent(words=["i", "love", "leetcode", "i", "love", "coding"], k=2)  # ['i', 'love']
     topKFrequent(words=["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"],
                  k=4)  # ["the","is","sunny","day"]
