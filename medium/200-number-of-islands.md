@@ -1,4 +1,4 @@
-Number of Islands
+# Number of Islands
 
 # Intuition
 Initially, I imagine that we did not need to count the islands, but just check the status of each cell and the connection that they have with other cells. 
