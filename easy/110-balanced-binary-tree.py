@@ -8,19 +8,19 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 
-class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        def dfs(root):
-            if not root:
-                return [True, 0]
 
-            left = dfs(root.left)
-            right = dfs(root.right)
-            balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)
+def isBalanced(root: Optional[TreeNode]) -> bool:
+    def dfs(root):
+        if not root:
+            return [True, 0]
 
-            return [balanced, max(left[1], right[1]) + 1]
+        left = dfs(root.left)
+        right = dfs(root.right)
+        balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)
 
-        return dfs(root)[0]
+        return [balanced, max(left[1], right[1]) + 1]
+
+    return dfs(root)[0]
 
 
 if __name__ == '__main__':
@@ -30,4 +30,4 @@ if __name__ == '__main__':
     root.right = TreeNode(20)
     root.right.left = TreeNode(15)
     root.right.right = TreeNode(7)
-    print(Solution().isBalanced(root))
+    print(isBalanced(root))
