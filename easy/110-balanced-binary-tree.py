@@ -2,11 +2,11 @@ from idlelib.tree import TreeNode
 from typing import Optional
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+     def __init__(self, val=0, left=None, right=None):
+         self.val = val
+         self.left = left
+         self.right = right
 
 
 def isBalanced(root: Optional[TreeNode]) -> bool:
