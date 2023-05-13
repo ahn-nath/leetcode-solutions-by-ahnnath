@@ -43,6 +43,8 @@ def orangesRotting(grid: List[List[int]]) -> int:
                     # increment count
                     minutes_count += 1
 
+    print(grid)
+
     for row in grid:
         # if any in current group is 1 after this row iteration, return -1
         if 1 in row:
@@ -56,6 +58,7 @@ def orangesRotting(grid: List[List[int]]) -> int:
 
 
 if __name__ == '__main__':
+    '''
     orangesRotting(grid=[[2, 1, 1], [1, 1, 0], [0, 1, 1]])  # 4
 
     orangesRotting(grid=[[2, 1, 1], [0, 1, 1], [1, 0, 1]])  # -1
@@ -64,3 +67,10 @@ if __name__ == '__main__':
 
     orangesRotting(grid=
                    [[1], [2]])
+    '''
+
+    orangesRotting(grid=
+                   [[2, 0, 1, 1, 1, 1, 1, 1, 1, 1], [1, 0, 1, 0, 0, 0, 0, 0, 0, 1], [1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
+                    [1, 0, 1, 0, 1, 0, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 0, 1, 0, 1], [1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
+                    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1], [1, 0, 1, 1, 1, 1, 1, 1, 0, 1], [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
