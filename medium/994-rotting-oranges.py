@@ -64,6 +64,7 @@ def orangesRotting(grid: List[List[int]]) -> int:
     # initialize with the first element in grid
     oranges_stack = [(0, 0)]
 
+    # TODO: change so that it would iterate through all rotten oranges and check all cases
     # find all rotten oranges
     while oranges_stack:
         ele = oranges_stack.pop()
@@ -111,6 +112,9 @@ def orangesRotting(grid: List[List[int]]) -> int:
 
             # set current as rotten if is healthy and if any adjacent is rotten
             if grid[row][column] == 1:
+                if top == 0 and bottom == 0 and left == 0 and right == 0:
+                    return -1
+
                 if top == 2 or bottom == 2 or left == 2 or right == 2:
                     grid[row][column] = 2
                     # increment count
