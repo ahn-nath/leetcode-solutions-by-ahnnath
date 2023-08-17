@@ -81,7 +81,48 @@ def gcdOfStrings2(str1: str, str2: str) -> str:
     return ""
 
 
+# NOTE: 73/123 passed
+def gcdOfStrings(str1: str, str2: str) -> str:
+    # define roles
+    if len(str1) > len(str2):
+        largest = str1
+        smallest = str2
+    else:
+        largest = str2
+        smallest = str1
+
+    # r1: both strings must have the same (unique) characters
+    if set(str1) != set(str2):
+        return ""
+
+    # find all possible candidates for the divisor
+    # len, starting from the back, with reverse step
+    for i in range(len(smallest), 0, -1):
+        # slice the string
+        sliced = smallest[:i]
+
+        # r2: the slice length must divide the string length evenly
+        if len(smallest) % len(sliced) != 0 or len(largest) % len(sliced) != 0:
+            continue
+
+        # r3: the slice (sliced) will be multiplied to match the strings
+        divisor_1 = len(largest) // len(sliced)
+        divisor_2 = len(smallest) // len(sliced)
+
+        result_1 = sliced * divisor_1
+        result_2 = sliced * divisor_2
+
+        # if the result of multiplying the string by the needed parts to complete the largest and
+        # smallest string, continue with the next slide
+        if result_1 == largest and result_2 == smallest:
+            return sliced
+
+    # no divisor found
+    return ""
+
+
 if __name__ == '__main__':
+
     str1 = "ABCABCABC"
     str2 = "ABC"
 
@@ -90,21 +131,19 @@ if __name__ == '__main__':
 
     str5 = "LEET"
     str6 = "CODE"
-    """
+
+    str7 = "ABABABAB"
+    str8 = "ABAB"
+
     str1 = "ABCABCABC"
-    str2 = "ABC"
-    print(len(str1))
-    print("\nseparator ABC:", str1.split("ABC"))
+    str2 = "ABCAAA"
 
-    str3 = "ABABAB"
-    str4 = "ABAB"
-    print("\nseparator AB:", str3.split("AB"))
-    print("\nseparator ABA:", str3.split("ABA"))
+    print(gcdOfStrings(str1, str2))  # ABC
+    print(gcdOfStrings(str3, str4))  # AB
+    print(gcdOfStrings(str5, str6))  # ""
+    print(gcdOfStrings(str1="TAUXXTAUXXTAUXXTAUXXTAUXX", str2="TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"))  # TAUXX
+    print(gcdOfStrings(str7, str8))  # "ABAB"
 
-    str5 = "LEET"
-    str6 = "CODE"
-    print("\nseparator AB:", str5.split("CODE", 3))
-    print("\nseparator ABA:", str5.split("CODED"))
     """
     # gcdOfStrings(str1, str2)
     # gcdOfStrings(str3, str4)
@@ -115,3 +154,4 @@ if __name__ == '__main__':
     # gcdOfStrings2(str3, str4)
     # gcdOfStrings2(str5, str6)
     gcdOfStrings2(str1="TAUXXTAUXXTAUXXTAUXXTAUXX", str2="TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX")
+    """
