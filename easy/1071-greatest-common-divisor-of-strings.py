@@ -1,5 +1,5 @@
 # NOTE: 33 cases passed
-def gcdOfStrings(str1: str, str2: str) -> str:
+def gcdOfStrings_a2(str1: str, str2: str) -> str:
     # we define the roles
     print(len(str1))
     print(len(str2))
@@ -35,7 +35,7 @@ def gcdOfStrings(str1: str, str2: str) -> str:
 
 
 # NOTE: 33 cases passed
-def gcdOfStrings2(str1: str, str2: str) -> str:
+def gcdOfStrings_a2(str1: str, str2: str) -> str:
     # we define the roles
     if len(str1) > len(str2):
         longest = str1
