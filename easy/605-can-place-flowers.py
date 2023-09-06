@@ -28,5 +28,5 @@ def canPlaceFlowers(flowerbed: List[int], n: int) -> bool:
 
 if __name__ == '__main__':
     # examples
-    # canPlaceFlowers(flowerbed=[1, 0, 0, 0, 1], n=1)  # True
+    canPlaceFlowers(flowerbed=[1, 0, 0, 0, 1], n=1)  # True
     canPlaceFlowers(flowerbed=[1, 0, 0, 0, 1], n=2)  # False
