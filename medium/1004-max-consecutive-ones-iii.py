@@ -86,6 +86,8 @@ def longestOnes(nums: List[int], k: int) -> int:
     # print(seq+supply)
     if seq + supply < len(nums):
         max_seq = seq + supply if seq + supply > max_seq else max_seq
+    else:
+        max_seq = len(nums) if max_seq < seq + supply else max_seq
     # check for max sequence
     print(max_seq)
     return max_seq
@@ -94,4 +96,5 @@ def longestOnes(nums: List[int], k: int) -> int:
 if __name__ == '__main__':
     longestOnes(nums=[1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], k=2)  # 6
     longestOnes(nums=[0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], k=3)  # 10
-    longestOnes(nums=[0, 0, 1, 1, 1, 0, 0], k=0)
+    longestOnes(nums=[0, 0, 1, 1, 1, 0, 0], k=0)  # 3
+    longestOnes(nums=[0, 0, 0, 1], k=4)  # 4
