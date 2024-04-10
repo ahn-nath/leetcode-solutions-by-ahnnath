@@ -54,11 +54,10 @@ def successfulPairs(spells: List[int], potions: List[int], success: int) -> List
             if (potions[mid] * spell) < success:
                 start = mid + 1
 
-        #pairs.append(len(potions) - special_index)
+        # pairs.append(len(potions) - special_index)
         pairs.insert(spells.index(spell), len(potions) - special_index)
     print(pairs)
     return pairs
-
 
 
 if __name__ == '__main__':
