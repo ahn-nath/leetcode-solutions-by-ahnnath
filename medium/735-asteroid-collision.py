@@ -1,7 +1,7 @@
 from typing import List
 
 
-def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+def asteroidCollision(asteroids: List[int]) -> List[int]:
     # current = asteroids.pop()
     position = len(asteroids) - 1
     while position > 0:
